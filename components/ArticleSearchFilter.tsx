@@ -31,8 +31,8 @@ export default function ArticleSearchFilter({ articles }: ArticleSearchFilterPro
                                 key={cat}
                                 onClick={() => setFilter(cat)}
                                 className={`inline-flex items-center justify-center rounded-full px-4 py-1.5 text-sm font-medium shadow-sm transition-colors whitespace-nowrap border ${filter === cat
-                                        ? "bg-blue-600 text-white border-blue-600 hover:bg-blue-700"
-                                        : "bg-white text-gray-700 border-gray-200 hover:bg-gray-50 hover:border-gray-300"
+                                    ? "bg-blue-600 text-white border-blue-600 hover:bg-blue-700"
+                                    : "bg-white text-gray-700 border-gray-200 hover:bg-gray-50 hover:border-gray-300"
                                     }`}
                             >
                                 {cat}
@@ -78,6 +78,7 @@ export default function ArticleSearchFilter({ articles }: ArticleSearchFilterPro
                                 title={article.title}
                                 category={article.category}
                                 readTime={article.readTime}
+                                image={article.image}
                                 trending={article.trending}
                             />
                         ))

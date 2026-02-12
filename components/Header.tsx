@@ -16,6 +16,12 @@ export default function Header() {
                     <Link className="text-gray-500 hover:text-blue-600" href="/category">
                         Categories
                     </Link>
+                    <Link className="text-gray-500 hover:text-blue-600" href="/about">
+                        About
+                    </Link>
+                    <Link className="text-gray-500 hover:text-blue-600" href="/contact">
+                        Contact
+                    </Link>
                 </nav>
                 <div className="flex items-center gap-4">
                     <button className="md:hidden text-2xl">

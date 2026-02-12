@@ -15,7 +15,7 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
 
-        {/* Trending Section Header is inside Hero or SearchFilter? 
+        {/* Trending Section Header is inside Hero or SearchFilter?
             Design shows "Trending 2026" above the list, but SearchFilter handles the list.
             I'll let ArticleSearchFilter handle the grid display.
         */}
