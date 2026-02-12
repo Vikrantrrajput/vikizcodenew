@@ -13,7 +13,7 @@ export default function CategoryPage() {
             {/* Page Header */}
             <div className="bg-white border-b py-8">
                 <div className="container mx-auto px-4 md:px-6">
-                    <h1 className="text-3xl font-bold mb-2">Explore Categories</h1>
+                    <h1 className="text-3xl font-bold mb-2">Explore blogs</h1>
                     <p className="text-gray-500">Deep dives into the future of artificial intelligence, web development, and more.</p>
                 </div>
             </div>
@@ -79,6 +79,7 @@ export default function CategoryPage() {
                                     title={article.title}
                                     category={article.category}
                                     readTime={article.readTime}
+                                    image={article.image}
                                 />
                             ))}
                         </div>

@@ -24,7 +24,7 @@ export default function ArticleCard({
     return (
         <Link href={`/blog/${slug}`} className={cn("group block relative flex flex-col overflow-hidden rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/20 h-full", className)}>
             {/* Image & Title Area */}
-            <div className="relative h-64 w-full overflow-hidden">
+            <div className="relative h-48 sm:h-56 md:h-64 w-full overflow-hidden">
                 {/* Featured Image or Brand Fallback */}
                 {image ? (
                     <Image
@@ -42,9 +42,9 @@ export default function ArticleCard({
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10" />
 
                 {/* Content Overlay */}
-                <div className="absolute inset-0 z-20 p-5 flex flex-col justify-end">
-                    <div className="flex items-center justify-between mb-3">
-                        <span className={cn("inline-flex items-center rounded-full px-2.5 py-0.5 text-[10px] font-bold tracking-wider uppercase backdrop-blur-md border border-white/20 text-white shadow-sm transition-colors bg-white/10")}>
+                <div className="absolute inset-0 z-20 p-3 sm:p-4 md:p-5 flex flex-col justify-end">
+                    <div className="flex items-center justify-between mb-2 sm:mb-3">
+                        <span className={cn("inline-flex items-center rounded-full px-2 sm:px-2.5 py-0.5 text-[9px] sm:text-[10px] font-bold tracking-wider uppercase backdrop-blur-md border border-white/20 text-white shadow-sm transition-colors bg-white/10")}>
                             {trending && <span className="mr-1">🔥</span>}
                             {category}
                         </span>
@@ -65,13 +65,13 @@ export default function ArticleCard({
                         </div>
                     </div>
 
-                    <h3 className="font-bold leading-tight tracking-tight text-xl line-clamp-2 text-white group-hover:text-blue-300 transition-colors duration-300">
+                    <h3 className="font-bold leading-tight tracking-tight text-base sm:text-lg md:text-xl line-clamp-2 text-white group-hover:text-blue-300 transition-colors duration-300">
                         {title}
                     </h3>
 
-                    <div className="flex items-center mt-3">
-                        <span className="text-[10px] font-semibold tracking-widest uppercase text-zinc-300/80">{readTime}</span>
-                        <div className="h-[1px] flex-1 ml-3 bg-white/10" />
+                    <div className="flex items-center mt-2 sm:mt-3">
+                        <span className="text-[9px] sm:text-[10px] font-semibold tracking-widest uppercase text-zinc-300/80">{readTime}</span>
+                        <div className="h-[1px] flex-1 ml-2 sm:ml-3 bg-white/10" />
                     </div>
                 </div>
             </div>
