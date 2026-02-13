@@ -1,6 +1,6 @@
-import Script from "next/script";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -23,36 +23,36 @@ export const metadata: Metadata = {
   keywords: ["Tech 2026", "AI", "Web Development", "Cloud Computing", "Startups"],
   authors: [{ name: "VikizCode Team" }],
   verification: {
-    google: "DhVRSrgSCtnVy2kd4exrGYroEOYP_2ZTz6I1PzFSXR0",
+    google: "PASTE_YOUR_GOOGLE_VERIFICATION_CODE_HERE",
   },
 };
 
-
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
- return (
-  <html lang="en">
-    <head>
-      <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=G-HZEJELYB13`}
-        strategy="afterInteractive"
-      />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-HZEJELYB13');
-        `}
-      </Script>
-    </head>
-    <body
-      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-    >
-      {children}
-    </body>
-  </html>
-);
+}) {
+  return (
+    <html lang="en">
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-HZEJELYB13"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-HZEJELYB13');
+          `}
+        </Script>
+      </head>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        {children}
+      </body>
+    </html>
+  );
+}
