@@ -25,6 +25,23 @@ export const metadata: Metadata = {
   verification: {
     google: "PASTE_YOUR_GOOGLE_VERIFICATION_CODE_HERE",
   },
+  openGraph: {
+  title: "VikizCode - Tech Trends 2026",
+  description:
+    "Insights into 2026 Tech Trends: AI, Web Dev, Cloud, and Startups.",
+  url: "https://vikizcode.in",
+  siteName: "VikizCode",
+  images: [
+    {
+      url: "https://vikizcode.in/images/ogimage.jpg",
+      width: 1200,
+      height: 630,
+    },
+  ],
+  locale: "en_IN",
+  type: "website",
+},
+
 };
 
 export default function RootLayout({
