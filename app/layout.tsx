@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   siteName: "VikizCode",
   images: [
     {
-      url: "https://vikizcode.in/images/ogimage.jpg",
+      url: "https://vikizcode.in/blog-images/ogimage.png",
       width: 1200,
       height: 630,
     },
