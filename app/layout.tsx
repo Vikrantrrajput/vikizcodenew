@@ -17,10 +17,15 @@ export const metadata: Metadata = {
     default: "VikizCode - Tech Trends 2026",
     template: "%s | VikizCode",
   },
-  description: "Insights into 2026 Tech Trends: AI, Web Dev, Cloud, and Startups. Your guide to the future of technology.",
+  description:
+    "Insights into 2026 Tech Trends: AI, Web Dev, Cloud, and Startups. Your guide to the future of technology.",
   keywords: ["Tech 2026", "AI", "Web Development", "Cloud Computing", "Startups"],
   authors: [{ name: "VikizCode Team" }],
+  verification: {
+    google: "DhVRSrgSCtnVy2kd4exrGYroEOYP_2ZTz6I1PzFSXR0",
+  },
 };
+
 
 export default function RootLayout({
   children,
