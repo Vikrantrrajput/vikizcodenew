@@ -5,6 +5,7 @@ import ArticleCard from "@/components/ArticleCard";
 import { getArticleBySlug, getAllArticles, getRelatedArticles } from "@/lib/data";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import NewsletterForm from "@/components/NewsletterForm";
 
 interface ArticlePageProps {
     params: Promise<{
@@ -108,6 +109,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                                 </span>
                             ))}
                         </div>
+
+                        {/* Newsletter Subscription */}
+                        <NewsletterForm />
                     </article>
 
                     {/* Sidebar (Desktop TOC) */}
@@ -117,24 +121,27 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                 </div>
 
                 {/* Related Articles */}
-                {relatedArticles.length > 0 && (
-                    <section className="mt-12 md:mt-20 border-t pt-8 md:pt-12">
-                        <h2 className="text-xl md:text-2xl font-bold mb-6 md:mb-8">Related 2026 Articles</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            {relatedArticles.map((related) => (
-                                <ArticleCard
-                                    key={related.slug}
-                                    slug={related.slug}
-                                    title={related.title}
-                                    category={related.category}
-                                    readTime={related.readTime}
-                                />
-                            ))}
-                        </div>
-                    </section>
-                )}
-            </main>
+                {
+                    relatedArticles.length > 0 && (
+                        <section className="mt-12 md:mt-20 border-t pt-8 md:pt-12">
+                            <h2 className="text-xl md:text-2xl font-bold mb-6 md:mb-8">Related 2026 Articles</h2>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                {relatedArticles.map((related) => (
+                                    <ArticleCard
+                                        key={related.slug}
+                                        slug={related.slug}
+                                        title={related.title}
+                                        category={related.category}
+                                        readTime={related.readTime}
+                                        image={related.image}
+                                    />
+                                ))}
+                            </div>
+                        </section>
+                    )
+                }
+            </main >
             <Footer />
-        </div>
+        </div >
     );
 }

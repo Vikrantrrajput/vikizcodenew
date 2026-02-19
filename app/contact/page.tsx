@@ -119,10 +119,20 @@ export default function ContactPage() {
                                     Stay connected with us on social media for the latest updates and tech insights.
                                 </p>
                                 <div className="flex gap-4">
-                                    <a href="#" className="w-10 h-10 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors">
+                                    <a
+                                        href="https://x.com/vikizcode_in"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="w-10 h-10 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors"
+                                    >
                                         𝕏
                                     </a>
-                                    <a href="#" className="w-10 h-10 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors">
+                                    <a
+                                        href="https://www.linkedin.com/in/vikrant-rajput-986319226/"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="w-10 h-10 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors"
+                                    >
                                         in
                                     </a>
                                     <a href="#" className="w-10 h-10 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors">
