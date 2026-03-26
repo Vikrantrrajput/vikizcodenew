@@ -4,19 +4,39 @@ import { useState } from "react";
 
 export default function Footer() {
     const [email, setEmail] = useState("");
-    const [status, setStatus] = useState<"idle" | "loading" | "success">("idle");
+    const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+    const [errorMessage, setErrorMessage] = useState("");
 
-    const handleSubscribe = (e: React.FormEvent) => {
+    const handleSubscribe = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!email) return;
 
         setStatus("loading");
+        setErrorMessage("");
 
-        // Simulating API call
-        setTimeout(() => {
-            setStatus("success");
-            setEmail("");
-        }, 1500);
+        const formData = new FormData();
+        formData.append("form-name", "footer-newsletter");
+        formData.append("email", email);
+
+        try {
+            const response = await fetch("/", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams(formData as any).toString(),
+            });
+
+            if (response.ok) {
+                setStatus("success");
+                setEmail("");
+            } else {
+                setStatus("error");
+                setErrorMessage("Something went wrong. Please try again.");
+            }
+        } catch (error) {
+            console.error("Subscription error:", error);
+            setStatus("error");
+            setErrorMessage("Failed to subscribe. Please check your connection.");
+        }
     };
 
     return (
@@ -59,23 +79,35 @@ export default function Footer() {
                                 Thanks for subscribing! We'll notify you on your email.
                             </div>
                         ) : (
-                            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-2 w-full">
-                                <input
-                                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
-                                    placeholder="Your email address"
-                                    type="email"
-                                    required
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                />
-                                <button
-                                    type="submit"
-                                    disabled={status === "loading"}
-                                    className="inline-flex h-10 items-center justify-center rounded-md bg-blue-600 px-6 py-2 text-sm font-medium text-white shadow hover:bg-blue-700 transition-colors whitespace-nowrap disabled:opacity-70"
+                            <div className="w-full">
+                                {status === "error" && (
+                                    <p className="text-red-500 text-xs mb-2 font-medium">{errorMessage}</p>
+                                )}
+                                <form
+                                    onSubmit={handleSubscribe}
+                                    className="flex flex-col sm:flex-row gap-2 w-full"
+                                    name="footer-newsletter"
+                                    data-netlify="true"
                                 >
-                                    {status === "loading" ? "Joining..." : "Subscribe"}
-                                </button>
-                            </form>
+                                    <input type="hidden" name="form-name" value="footer-newsletter" />
+                                    <input
+                                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+                                        placeholder="Your email address"
+                                        type="email"
+                                        name="email"
+                                        required
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                    />
+                                    <button
+                                        type="submit"
+                                        disabled={status === "loading"}
+                                        className="inline-flex h-10 items-center justify-center rounded-md bg-blue-600 px-6 py-2 text-sm font-medium text-white shadow hover:bg-blue-700 transition-colors whitespace-nowrap disabled:opacity-70"
+                                    >
+                                        {status === "loading" ? "Joining..." : "Subscribe"}
+                                    </button>
+                                </form>
+                            </div>
                         )}
                     </div>
                 </div>

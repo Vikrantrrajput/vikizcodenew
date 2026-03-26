@@ -787,8 +787,119 @@ npm run dev</code></pre>
   //   date: "Mar 12, 2026",
   //   views: "12K views",
   //   image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&h=675&fit=crop",
+  //   image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&h=675&fit=crop",
   //   content: "<p>Cyber threats are evolving. Here is how to stay ahead...</p>",
   // }
+  {
+    slug: "build-frontend-without-backend-using-mock-apis-student-guide",
+    title: "Build Frontend Without Backend Using Mock APIs (Student Guide)",
+    category: "Web Dev 2026",
+    readTime: "8 min read",
+    date: "March 26, 2026",
+    views: "0 views",
+    trending: true,
+    image: "/blog-images/mock-api-guide.png",
+    summary: "Stop waiting for the backend. Learn how to use Mock APIs to build and test your frontend independently, speeding up your development process in hackathons and team projects.",
+    content: `
+<img src="/blog-images/mock-api-guide.png" alt="Build Frontend Without Backend Using Mock APIs Cover" style="width: 100%; border-radius: 12px; margin-bottom: 2rem;" />
+
+<p>You’re at a hackathon. It’s 3 AM. Your teammate is still debugging the Go backend, and you’re sitting there, staring at a blank screen because you need the <code>/api/users</code> endpoint to build your dashboard. Your progress is stalled. The deadline is looming. Frustrating, right?</p>
+
+<p>I’ve been there. Most engineering students believe they can’t build a frontend without a functioning backend. But here's a secret: <strong>Smart developers don’t wait for the backend—they simulate it.</strong></p>
+
+<h2>The Problem: The Frontend-Backend Dependency Trap</h2>
+
+<p>In most student projects, the frontend depends heavily on the backend APIs. If the backend is slow, down, or not yet written, the frontend development stops. This creates a bottleneck that leads to several issues:</p>
+
+<ul>
+  <li><strong>Slow Development:</strong> You're waiting instead of coding.</li>
+  <li><strong>Tutorial Hell:</strong> You're forced to follow along with tutorials instead of building your own features.</li>
+  <li><strong>Hackathon Stress:</strong> Integrating at the last minute because the backend was "just finished" usually breaks everything.</li>
+</ul>
+
+<p>The solution? <strong>Mock APIs.</strong></p>
+
+<h2>What are Mock APIs?</h2>
+
+<p>A Mock API is a "fake" server that returns real-looking data. Instead of waiting for a developer to write database logic, you just tell a mock tool: <em>"When I call <code>/users</code>, give me a list of 5 users with names and emails."</em></p>
+
+<p>It simulates a real backend response perfectly, allowing you to build, test, and polish your UI independently. When the real backend is ready, you just swap the URL. That's it.</p>
+
+<h2>Why This Is a Superpower for Students</h2>
+
+<ul>
+  <li><strong>Hackathons:</strong> You can finish the entire UI while your teammate is still setting up the database.</li>
+  <li><strong>Team Projects:</strong> No more "Is the API ready yet?" messages on Discord.</li>
+  <li><strong>Faster Learning:</strong> Focus on React, Vue, or Tailwind without worrying about Node.js or Python.</li>
+  <li><strong>Independent Testing:</strong> Test how your UI handles errors, loading states, and empty data effortlessly.</li>
+</ul>
+
+<h2>Top 3 Tools to Use (Keep it Simple)</h2>
+
+<h3>1. Hoppscotch (Recommended)</h3>
+<p>Hoppscotch is an open-source alternative to Postman. It has a built-in "Rest API" feature that allows you to create quick collections and mock responses for free without signing up for much.</p>
+<p><strong>Benefit:</strong> Lightweight, fast, and stays in your browser.</p>
+
+<h3>2. Postman Mock Server</h3>
+<p>Postman is the industry standard. Their "Mock Server" feature allows you to create a private or public URL that returns whatever JSON you want.</p>
+<p><strong>Benefit:</strong> Extremely powerful for simulating different environments (Dev, Staging, Prod).</p>
+
+<h3>3. JSON Server</h3>
+<p>If you want something local, JSON Server allows you to turn a simple <code>db.json</code> file into a full REST API with zero coding. It even handles CRUD (Create, Read, Update, Delete) operations!</p>
+<p><strong>Benefit:</strong> Best for building a full "CRUD" app locally without a real database.</p>
+
+<h2>Quick Setup: Mocking in 3 Steps</h2>
+
+<ol>
+  <li><strong>Create a Mock Response:</strong> Define the JSON structure you need (e.g., <code>{ "id": 1, "status": "active" }</code>).</li>
+  <li><strong>Generate API URL:</strong> Get the public URL from your tool (e.g., <code>https://mock.api.com/v1/data</code>).</li>
+  <li><strong>Use it in Frontend:</strong> Replace your API call with the mock URL in <code>fetch</code> or <code>axios</code>.</li>
+</ol>
+
+<pre><code>// Instead of waiting for http://localhost:5000/api/users
+fetch('https://your-mock-url.com/api/users')
+  .then(res => res.json())
+  .then(data => console.log(data));
+</code></pre>
+
+<h2>A Practical Example (React)</h2>
+
+<p>Let's say you're building a "Student Directory." Instead of waiting for the backend, you can use a Mock API to fetch student data immediately:</p>
+
+<pre><code class="language-javascript">import { useState, useEffect } from 'react';
+
+function StudentList() {
+  const [students, setStudents] = useState([]);
+
+  useEffect(() => {
+    // 1. Using a Mock URL from Postman or Beeceptor
+    fetch('https://run.mocky.io/v3/your-unique-id')
+      .then(response => response.json())
+      .then(data => setStudents(data));
+  }, []);
+
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Student Directory&lt;/h1&gt;
+      &lt;ul&gt;
+        {students.map(student => (
+          &lt;li key={student.id}&gt;{student.name} - {student.enrollment}&lt;/li&gt;
+        ))}
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+
+<p>Your team can now see the directory, even if the database hasn't been created yet!</p>
+
+<h2>Final Insight</h2>
+
+<p>The best developers aren't just good at writing code—they are good at <strong>removing blockers</strong>. Don't let a missing backend stop your creativity. Mock it, build it, and swap it later. 🚀</p>
+
+<p>Smart developers don't wait. They simulate.</p>
+    `
+  },
 ];
 
 export function getAllArticles() {

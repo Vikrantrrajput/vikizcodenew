@@ -1,7 +1,36 @@
+"use client";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useState } from "react";
 
 export default function ContactPage() {
+    const [submitStatus, setSubmitStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+    const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setSubmitStatus("loading");
+
+        const formData = new FormData(e.currentTarget);
+        formData.append("form-name", "contact");
+
+        try {
+            const response = await fetch("/", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams(formData as any).toString(),
+            });
+
+            if (response.ok) {
+                setSubmitStatus("success");
+            } else {
+                setSubmitStatus("error");
+            }
+        } catch (error) {
+            console.error("Contact submission error:", error);
+            setSubmitStatus("error");
+        }
+    };
+
     return (
         <div className="flex min-h-screen flex-col bg-[#F3F4F6]">
             <Header />
@@ -22,66 +51,95 @@ export default function ContactPage() {
                         {/* Contact Form */}
                         <div className="bg-white rounded-xl p-8 shadow-sm border border-zinc-200">
                             <h2 className="text-2xl font-bold text-zinc-900 mb-6">Send us a message</h2>
-                            <form className="space-y-6">
-                                <div>
-                                    <label htmlFor="name" className="block text-sm font-semibold text-zinc-700 mb-2">
-                                        Your Name
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="name"
-                                        name="name"
-                                        className="w-full px-4 py-3 rounded-lg border border-zinc-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 outline-none transition-all"
-                                        placeholder="John Doe"
-                                    />
+                            {submitStatus === "success" ? (
+                                <div className="bg-green-50 text-green-700 p-8 rounded-xl border border-green-100 text-center animate-in fade-in zoom-in duration-300">
+                                    <p className="font-bold text-2xl mb-2">Message Sent! 🚀</p>
+                                    <p>Thanks for reaching out. We'll get back to you within 24-48 hours.</p>
+                                    <button
+                                        onClick={() => setSubmitStatus("idle")}
+                                        className="mt-6 text-blue-600 font-semibold hover:underline"
+                                    >
+                                        Send another message
+                                    </button>
                                 </div>
-
-                                <div>
-                                    <label htmlFor="email" className="block text-sm font-semibold text-zinc-700 mb-2">
-                                        Email Address
-                                    </label>
-                                    <input
-                                        type="email"
-                                        id="email"
-                                        name="email"
-                                        className="w-full px-4 py-3 rounded-lg border border-zinc-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 outline-none transition-all"
-                                        placeholder="john@example.com"
-                                    />
-                                </div>
-
-                                <div>
-                                    <label htmlFor="subject" className="block text-sm font-semibold text-zinc-700 mb-2">
-                                        Subject
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="subject"
-                                        name="subject"
-                                        className="w-full px-4 py-3 rounded-lg border border-zinc-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 outline-none transition-all"
-                                        placeholder="How can we help?"
-                                    />
-                                </div>
-
-                                <div>
-                                    <label htmlFor="message" className="block text-sm font-semibold text-zinc-700 mb-2">
-                                        Message
-                                    </label>
-                                    <textarea
-                                        id="message"
-                                        name="message"
-                                        rows={5}
-                                        className="w-full px-4 py-3 rounded-lg border border-zinc-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 outline-none transition-all resize-none"
-                                        placeholder="Tell us more about your inquiry..."
-                                    />
-                                </div>
-
-                                <button
-                                    type="submit"
-                                    className="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all shadow-lg shadow-blue-500/30"
+                            ) : (
+                                <form
+                                    className="space-y-6"
+                                    name="contact"
+                                    data-netlify="true"
+                                    onSubmit={handleContactSubmit}
                                 >
-                                    Send Message
-                                </button>
-                            </form>
+                                    <input type="hidden" name="form-name" value="contact" />
+                                    {submitStatus === "error" && (
+                                        <p className="text-red-500 text-sm font-medium bg-red-50 p-3 rounded-lg border border-red-100">
+                                            Something went wrong. Please try again later.
+                                        </p>
+                                    )}
+                                    <div>
+                                        <label htmlFor="name" className="block text-sm font-semibold text-zinc-700 mb-2">
+                                            Your Name
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="name"
+                                            name="name"
+                                            required
+                                            className="w-full px-4 py-3 rounded-lg border border-zinc-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 outline-none transition-all"
+                                            placeholder="John Doe"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label htmlFor="email" className="block text-sm font-semibold text-zinc-700 mb-2">
+                                            Email Address
+                                        </label>
+                                        <input
+                                            type="email"
+                                            id="email"
+                                            name="email"
+                                            required
+                                            className="w-full px-4 py-3 rounded-lg border border-zinc-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 outline-none transition-all"
+                                            placeholder="john@example.com"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label htmlFor="subject" className="block text-sm font-semibold text-zinc-700 mb-2">
+                                            Subject
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="subject"
+                                            name="subject"
+                                            required
+                                            className="w-full px-4 py-3 rounded-lg border border-zinc-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 outline-none transition-all"
+                                            placeholder="How can we help?"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label htmlFor="message" className="block text-sm font-semibold text-zinc-700 mb-2">
+                                            Message
+                                        </label>
+                                        <textarea
+                                            id="message"
+                                            name="message"
+                                            rows={5}
+                                            required
+                                            className="w-full px-4 py-3 rounded-lg border border-zinc-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 outline-none transition-all resize-none"
+                                            placeholder="Tell us more about your inquiry..."
+                                        />
+                                    </div>
+
+                                    <button
+                                        type="submit"
+                                        disabled={submitStatus === "loading"}
+                                        className="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all shadow-lg shadow-blue-500/30 disabled:opacity-70"
+                                    >
+                                        {submitStatus === "loading" ? "Sending..." : "Send Message"}
+                                    </button>
+                                </form>
+                            )}
                         </div>
 
                         {/* Contact Info */}
