@@ -10,6 +10,7 @@ export interface Article {
   toc?: { id: string; title: string }[];
   trending?: boolean;
   image?: string;
+  tags?: string[];
 }
 
 // Demo articles - currently disabled
@@ -25,6 +26,7 @@ export const articles: Article[] = [
     views: "0 views",
     trending: true,
     image: "/blog-images/vikizcodecover.png",
+    tags: ["Next.js", "Web Dev", "Tutorial", "Engineering"],
     summary: "A step-by-step breakdown of how I built my own tech blog using Next.js, Tailwind CSS, GitHub, and Netlify — from idea to live deployment.",
     content: `
 <img src="/blog-images/vikizcodecover.png" alt="VikizCode cover image" style="width: 100%; border-radius: 12px; margin-bottom: 2rem;" />
@@ -205,6 +207,7 @@ npm run dev</code></pre>
     date: "February 12, 2026",
     views: "0 views",
     image: "/blog-images/heroblg2.png",
+    tags: ["Learning", "Beginners", "Motivation", "Consistency"],
     summary: "A practical survival guide for beginners who start learning web development but keep quitting. Focus on mindset, consistency, and real execution.",
     content: `
 <img src="/blog-images/heroblg2.png" alt="How to learn web development without quitting" style="width: 100%; border-radius: 12px; margin-bottom: 2rem;" />
@@ -286,6 +289,7 @@ npm run dev</code></pre>
     date: "February 12, 2026",
     views: "0 views",
     image: "/blog-images/heroblg3.png",
+    tags: ["AI", "Tools", "Productivity", "Engineering"],
     summary: "A practical and honest breakdown of the most useful AI tools for engineering students in 2026 — covering coding, research, productivity, and career growth.",
     content: `
 <img src="/blog-images/heroblg3.png" alt="Top AI tools for engineering students in 2026" style="width: 100%; border-radius: 12px; margin-bottom: 2rem;" />
@@ -365,6 +369,7 @@ npm run dev</code></pre>
     date: "February 13, 2026",
     views: "0 views",
     image: "/blog-images/heroblg4.png",
+    tags: ["Internships", "Career", "Skills", "Advice"],
     summary: "A grounded look at common internship mistakes engineering students make — and practical solutions to build real skills instead of just collecting certificates.",
     content: `
 <img src="/blog-images/heroblg4.png" alt="Engineering student reflecting on internship choices and real skill development" style="width: 100%; border-radius: 12px; margin-bottom: 2rem;" />
@@ -425,6 +430,7 @@ npm run dev</code></pre>
     views: "0 views",
     trending: true,
     image: "/blog-images/stop-deploying-hero-final.png",
+    tags: ["Deployment", "Tunneling", "Localhost", "Tools"],
     summary: "Stop wasting time on full deployments for quick demos. Learn how localhost tunneling gives you a public URL in seconds for hackathons, viva, and mobile testing.",
     content: `
 <img src="/blog-images/stop-deploying-hero-final.png" alt="Localhost tunneling vs deployment hero image" style="width: 100%; border-radius: 12px; margin-bottom: 2rem;" />
@@ -550,6 +556,7 @@ npm run dev</code></pre>
     views: "0 views",
     trending: true,
     image: "/blog-images/free-hosting-hero.png",
+    tags: ["Hosting", "Free Tier", "Vercel", "Netlify"],
     summary: "A practical, student-friendly guide to the best free hosting and deployment platforms in 2026 — from Netlify and Vercel to Railway and Render.",
     content: `
 <img src="/blog-images/free-hosting-hero.png" alt="Free hosting guide hero image" style="width: 100%; border-radius: 12px; margin-bottom: 2rem;" />
@@ -799,6 +806,7 @@ npm run dev</code></pre>
     views: "0 views",
     trending: true,
     image: "/blog-images/mock-api-guide.png",
+    tags: ["Mock API", "Frontend", "Backend", "Testing"],
     summary: "Stop waiting for the backend. Learn how to use Mock APIs to build and test your frontend independently, speeding up your development process in hackathons and team projects.",
     content: `
 <img src="/blog-images/mock-api-guide.png" alt="Build Frontend Without Backend Using Mock APIs Cover" style="width: 100%; border-radius: 12px; margin-bottom: 2rem;" />
@@ -899,6 +907,179 @@ function StudentList() {
 
 <p>Smart developers don't wait. They simulate.</p>
     `
+  },
+  {
+    slug: "you-dont-need-to-code-everything-from-scratch-modern-dev-stack",
+    title: "You Don’t Need to Code Everything From Scratch. Build From Idea to Live App Using This Modern Dev Stack.",
+    category: "Web Dev 2026",
+    readTime: "6 min read",
+    date: "March 28, 2026",
+    views: "0 views",
+    trending: true,
+    image: "/blog-images/modern-dev-stack-hero.jpeg",
+    tags: ["Modern Stack", "Productivity", "Cursor", "Supabase", "Vercel"],
+    toc: [
+      { id: "problem", title: "The Problem: The DIY Trap" },
+      { id: "stack", title: "The \"I Need to Ship it Now\" Stack" },
+      { id: "how-it-works", title: "How It All Fits Together" },
+      { id: "example", title: "Rahul's 48-Hour Launch" },
+    ],
+    summary: "A simple modern stack for students to build and launch projects faster in 2026. Stop overcomplicating and start shipping.",
+    content: `
+<img src="/blog-images/modern-dev-stack-hero.jpeg" alt="Modern Dev Stack Hero" style="width: 100%; border-radius: 12px; margin-bottom: 2rem;" />
+
+<p>It’s 2 AM.<br/>
+You finally decide to start your project.<br/>
+You open VS Code…<br/>
+and freeze.</p>
+
+<p><em>\"PostgreSQL or MongoDB? Express or Next? Auth or… wait, how do I even start?\"</em></p>
+
+<p>You don’t quit because you’re lazy. You quit because everything feels too complex before you even begin.</p>
+
+<p>Here’s the hard truth: <strong>You don’t need to build everything from scratch anymore.</strong></p>
+
+<h2 id=\"problem\">The Problem: The "DIY Trap"</h2>
+
+<p>Students often think \"real coding\" means building every single layer manually. They spend weeks configuring a database instead of building features.</p>
+
+<p>In 2026, the best developers aren't building their own auth systems. They're using tools that give them a 5-step head start.</p>
+
+<p>Modern development isn’t about coding more.<br/>
+It’s about building smarter.</p>
+
+<div style=\"background-color: #eff6ff; border-left: 4px solid #3b82f6; padding: 1.5rem; border-radius: 8px; margin: 2rem 0;\">
+  <p style=\"color: #1e40af; margin: 0; font-weight: 700;\">Focus on the 10% that makes your app unique.<br/>
+  Let tools handle the 90% that’s already solved.</p>
+</div>
+
+<p style=\"font-size: 1.125rem; font-weight: 600; color: #1e293b; margin: 2.5rem 0 1.5rem;\">
+  Instead of asking \"What should I build?\"<br/>
+  Start asking \"What should I NOT build?\"
+</p>
+
+<h2 id=\"stack\">The \"I Need to Ship it Now\" Stack 🔥</h2>
+
+<p>If you want to build and launch in a weekend, this is your stack:</p>
+
+<h3><img src="https://www.cursor.com/assets/images/logo.svg" width="28" alt="Cursor logo" style="display: inline-block; vertical-align: middle; margin-right: 8px; margin-top: 0; margin-bottom: 0;" /> 1. Cursor (AI Coding)</h3>
+<p>An AI-first editor that understands your entire repository. It writes boilerplate and fixes bugs while you think about the logic.</p>
+<p><strong>Why it matters:</strong> No more wrestling with boilerplate or cryptic errors alone. You move 10x faster.</p>
+
+<h3><img src="https://cdn.simpleicons.org/supabase" width="28" alt="Supabase logo" style="display: inline-block; vertical-align: middle; margin-right: 8px; margin-top: 0; margin-bottom: 0;" /> 2. Supabase (The Backend in a Box)</h3>
+<p>A ready-to-use database, auth, and file storage. It’s like having a senior backend engineer working for you for free.</p>
+<p><strong>Why it matters:</strong> You can build a full-stack app without spending weeks on the backend setup.</p>
+
+<h3><img src="/blog-images/vercel.png" width="28" alt="Vercel logo" style="display: inline-block; vertical-align: middle; margin-right: 8px; margin-top: 0; margin-bottom: 0;" /> 3. Vercel (Instant Deployment)</h3>
+<p>Connect your GitHub and you're live. No server configuration, no headache.</p>
+<p><strong>Why it matters:</strong> A live project in one click. No hosting headaches or \"it works on my machine\" excuses.</p>
+
+<h3><img src="/blog-images/github.svg" width="28" alt="GitHub logo" style="display: inline-block; vertical-align: middle; margin-right: 8px; margin-top: 0; margin-bottom: 0;" /> 4. GitHub (Your Safety Net)</h3>
+<p>Version control is where your code lives and grows. It’s where you prove you can collaborate.</p>
+<p><strong>Why it matters:</strong> It’s your digital resume. If it’s not on GitHub, it didn’t happen.</p>
+
+<h3><img src="https://cdn.simpleicons.org/resend" width="28" alt="Resend logo" style="display: inline-block; vertical-align: middle; margin-right: 8px; margin-top: 0; margin-bottom: 0;" /> 5. Resend (Email for Humans)</h3>
+<p>The simplest way to send welcome emails or notifications from your app.</p>
+<p><strong>Why it matters:</strong> Makes your project look like a professional product, not a school assignment.</p>
+
+<div style=\"background-color: #f8fafc; border-left: 4px solid #64748b; padding: 1.5rem; border-radius: 8px; margin: 2rem 0;\">
+  <p style=\"color: #334155; margin: 0;\">
+    <strong>If you're struggling with deployment, check this:</strong><br/>
+    <a href=\"/blog/stop-deploying-just-to-show-your-project-use-this-instead\" style=\"color: #2563eb; font-weight: 600;\">→ Stop Deploying Just to Show Your Project</a>
+  </p>
+</div>
+
+<h2 id=\"how-it-works\">How It All Fits Together</h2>
+
+<p>Think of your app like a simple pipeline:</p>
+
+<div style=\"background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 2rem; border-radius: 16px; margin: 2rem 0;\">
+  <div style=\"display: flex; flex-direction: column; gap: 1.25rem;\">
+    
+    <!-- User View -->
+    <div style=\"display: flex; align-items: center; gap: 1rem; background: #ffffff; padding: 1rem; border-radius: 10px; border: 1px solid #f1f5f9; box-shadow: 0 1px 2px rgba(0,0,0,0.05);\">
+      <div style=\"font-size: 1.5rem;\">👤</div>
+      <div style=\"flex: 1;\">
+        <div style=\"font-weight: 700; color: #0f172a;\">User</div>
+        <div style=\"font-size: 0.875rem; color: #64748b;\">The starting point of any app</div>
+      </div>
+    </div>
+
+    <div style=\"text-align: center; color: #cbd5e1; font-size: 1.25rem;\">↓</div>
+
+    <!-- Frontend -->
+    <div style=\"display: flex; align-items: center; gap: 1rem; background: #ffffff; padding: 1rem; border-radius: 10px; border: 1px solid #f1f5f9; box-shadow: 0 1px 2px rgba(0,0,0,0.05);\">
+      <img src=\"/blog-images/vercel.png\" width=\"28\" alt=\"Vercel logo\" />
+      <div style=\"flex: 1;\">
+        <div style=\"font-weight: 700; color: #0f172a;\">Frontend <span style=\"font-weight: normal; color: #94a3b8; margin-left: 0.5rem;\">(Vercel)</span></div>
+        <div style=\"font-size: 0.875rem; color: #64748b;\">Hosting your UI and fast loading</div>
+      </div>
+    </div>
+
+    <!-- Backend -->
+    <div style=\"display: flex; align-items: center; gap: 1rem; background: #ffffff; padding: 1rem; border-radius: 10px; border: 1px solid #f1f5f9; box-shadow: 0 1px 2px rgba(0,0,0,0.05);\">
+      <img src=\"https://cdn.simpleicons.org/supabase\" width=\"28\" alt=\"Supabase logo\" />
+      <div style=\"flex: 1;\">
+        <div style=\"font-weight: 700; color: #0f172a;\">Backend <span style=\"font-weight: normal; color: #94a3b8; margin-left: 0.5rem;\">(Supabase)</span></div>
+        <div style=\"font-size: 0.875rem; color: #64748b;\">Database, Auth, and Storage</div>
+      </div>
+    </div>
+
+    <!-- Emails -->
+    <div style=\"display: flex; align-items: center; gap: 1rem; background: #ffffff; padding: 1rem; border-radius: 10px; border: 1px solid #f1f5f9; box-shadow: 0 1px 2px rgba(0,0,0,0.05);\">
+      <img src=\"https://cdn.simpleicons.org/resend\" width=\"28\" alt=\"Resend logo\" />
+      <div style=\"flex: 1;\">
+        <div style=\"font-weight: 700; color: #0f172a;\">Emails <span style=\"font-weight: normal; color: #94a3b8; margin-left: 0.5rem;\">(Resend)</span></div>
+        <div style=\"font-size: 0.875rem; color: #64748b;\">Automated notifications and auth emails</div>
+      </div>
+    </div>
+    
+    <!-- Code Updates -->
+    <div style=\"display: flex; align-items: center; gap: 1rem; background: #f1f5f9; padding: 1rem; border-radius: 10px; border: 1px dashed #cbd5e1;\">
+      <img src=\"/blog-images/github.svg\" width=\"28\" alt=\"GitHub logo\" />
+      <div style=\"flex: 1;\">
+        <div style=\"font-weight: 700; color: #0f172a;\">Code Updates <span style=\"font-weight: normal; color: #94a3b8; margin-left: 0.5rem;\">(GitHub)</span></div>
+        <div style=\"font-size: 0.875rem; color: #64748b;\">The engine powering the whole deployment</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<p>Each tool handles its job. You just connect the dots.</p>
+
+<h2 id=\"example\">Rahul's 48-Hour Launch: Idea → Live Product</h2>
+
+<p>Rahul, a 2nd-year student, wanted a \"Sneaker Resell Tracker.\"</p>
+<ul>
+  <li><strong>Friday:</strong> Scaffolds the UI using <strong>Cursor</strong>.</li>
+  <li><strong>Saturday:</strong> Connects Google Login with <strong>Supabase</strong> (10 mins).</li>
+  <li><strong>Sunday Morning:</strong> Sets up <strong>Resend</strong> for price drop alerts.</li>
+  <li><strong>Sunday Evening:</strong> <code>git push</code>. The site is live on <strong>Vercel</strong>.</li>
+</ul>
+<p>He didn’t build infrastructure.<br/>
+He built a product. That’s the difference.</p>
+
+<h2>Final Insight</h2>
+
+<p>In 2026, being a great developer doesn't mean you know how to build a database from scratch. It means you know which tools to pick so you don't have to.</p>
+
+<p>That’s the real skill in 2026.</p>
+
+<p style=\"font-size: 1.25rem; font-weight: 700; text-align: center; margin-top: 3rem; color: #1e40af; line-height: 1.4;\">
+  \"You don’t need to code everything from scratch.<br/>
+  You need to know what not to build.\"
+</p>
+
+<hr style=\"margin: 3rem 0; border: none; border-top: 1px solid #e5e7eb;\" />
+
+<h3>Read next:</h3>
+<ul style=\"list-style: none; padding: 0;\">
+  <li style=\"margin-bottom: 0.5rem;\">• <a href=\"/blog/deploy-your-project-for-free-hosting-options\" style=\"color: #2563eb; text-decoration: none;\">Deploy Your Project for Free</a></li>
+  <li style=\"margin-bottom: 0.5rem;\">• <a href=\"/blog/stop-deploying-just-to-show-your-project-use-this-instead\" style=\"color: #2563eb; text-decoration: none;\">Localhost Tunneling Guide</a></li>
+  <li style=\"margin-bottom: 0.5rem;\">• <a href=\"/blog/top-ai-tools-for-engineering-students-2026\" style=\"color: #2563eb; text-decoration: none;\">AI Tools for Students</a></li>
+</ul>
+`
   },
 ];
 

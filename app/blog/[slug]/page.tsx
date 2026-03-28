@@ -144,23 +144,20 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                         )}
 
                         {/* Tags */}
-                        <div className="pt-8 border-t flex flex-wrap gap-2">
-                            <span className="text-gray-500 text-sm font-medium mr-2">Tags:</span>
-                            {["#Serverless", "#TypeScript", "#AWS", "#Cloud2026"].map(tag => (
-                                <span key={tag} className="px-3 py-1 bg-gray-100 text-xs rounded-full text-gray-600 hover:bg-gray-200 cursor-pointer transition-colors">
-                                    {tag}
-                                </span>
-                            ))}
-                        </div>
+                        {article.tags && article.tags.length > 0 && (
+                            <div className="pt-8 border-t flex flex-wrap gap-2">
+                                <span className="text-gray-500 text-sm font-medium mr-2">Tags:</span>
+                                {article.tags.map(tag => (
+                                    <span key={tag} className="px-3 py-1 bg-gray-100 text-xs rounded-full text-gray-600 hover:bg-gray-200 cursor-pointer transition-colors">
+                                        #{tag}
+                                    </span>
+                                ))}
+                            </div>
+                        )}
 
                         {/* Newsletter Subscription */}
                         <NewsletterForm />
                     </article>
-
-                    {/* Sidebar (Desktop TOC) */}
-                    <aside className="hidden lg:block lg:col-span-4">
-                        <TableOfContents items={article.toc || []} />
-                    </aside>
                 </div>
 
                 {/* Related Articles */}
