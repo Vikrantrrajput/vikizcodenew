@@ -1081,6 +1081,154 @@ He built a product. That’s the difference.</p>
 </ul>
 `
   },
+  {
+    slug: "npm-was-hacked-stay-safe-student-developer",
+    title: "npm Was Hacked. Here’s How to Stay Safe as a Student Developer",
+    category: "Cybersecurity",
+    readTime: "6 min read",
+    date: "April 1, 2026",
+    views: "0 views",
+    trending: true,
+    image: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=1200&q=80",
+    tags: ["npm", "Security", "Student Dev", "Cybersecurity"],
+    summary: "A practical guide for student developers on how to protect their projects after the recent npm security incidents. Learn to audit, verify, and trust your dependencies.",
+    content: `
+<img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=1200&q=80" alt="npm Was Hacked Hero Image" style="width: 100%; border-radius: 12px; margin-bottom: 2rem;" />
+
+<p style="font-size: 1.125rem; color: #64748b; margin-bottom: 2rem; font-style: italic;">
+  “A simple guide to understanding npm risks and how to stay safe as a student developer”
+</p>
+
+<h2>The Hook: Trust in the Terminal</h2>
+
+<p>You open your terminal.<br/>
+Run <code>npm install</code>.<br/>
+And trust that everything is safe.</p>
+
+<p>Because… why wouldn’t it be?</p>
+
+<p>Most of us don't think twice. We see a package in a tutorial, copy the command, and hit Enter. But what if that package wasn't what it seemed? What if, behind that simple install, there was code designed to steal your data or break your project?</p>
+
+<p><strong>Recent incidents have shown that npm isn't bulletproof.</strong> Here is what you need to know to protect yourself without being a security expert.</p>
+
+<h2>What Happened? (The Simple Explanation)</h2>
+
+<p>In recent months, the npm ecosystem has faced several security challenges. Some popular packages were compromised, and malicious "typosquatting" (creating packages with names very similar to famous ones) became more common. This exposed a fundamental truth: <strong>the dependency chain is only as strong as its weakest link.</strong> Programs we trust blindly can sometimes be used as backdoors into our systems.</p>
+
+<p>And the scary part? Most of these issues don’t look obvious while installing.</p>
+
+<div style="background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 2rem; border-radius: 16px; margin: 3rem 0;">
+  <h3 style="margin-top: 0; text-align: center;">How the Dependency Chain Works</h3>
+  <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem; margin-top: 1.5rem;">
+    <div style="background: #ffffff; padding: 0.75rem 1.5rem; border-radius: 8px; border: 1px solid #3b82f6; color: #3b82f6; font-weight: 700;">You</div>
+    <div style="color: #94a3b8;">↓ npm install</div>
+    <div style="background: #ffffff; padding: 0.75rem 1.5rem; border-radius: 8px; border: 1px solid #10b981; color: #10b981; font-weight: 700;">Package</div>
+    <div style="color: #94a3b8;">↓ contains</div>
+    <div style="background: #fef2f2; padding: 0.75rem 1.5rem; border-radius: 8px; border: 1px solid #ef4444; color: #ef4444; font-weight: 700;">Hidden Malicious Code</div>
+    <div style="color: #94a3b8;">↓ executes in</div>
+    <div style="background: #ffffff; padding: 0.75rem 1.5rem; border-radius: 8px; border: 1px solid #0f172a; color: #0f172a; font-weight: 700;">Your Project / System</div>
+  </div>
+</div>
+
+<p>And you don’t see any of this happening.</p>
+
+<p>When you install a package, you aren't just getting one file. You're getting every single sub-dependency that the author included. If just one of those is compromised, your whole project is at risk.</p>
+
+<h2>Why Students Are at Risk</h2>
+
+<p>As students, we are the easiest targets. Why? Because we move fast and "just want it to work."</p>
+<ul>
+  <li><strong>Tutorial Blindness:</strong> We copy-paste commands from 3-year-old YouTube videos without checking if the package is still maintained.</li>
+  <li><strong>Blind Trust:</strong> We assume that if it's on npm and it has a cool name, it must be safe.</li>
+  <li><strong>Lack of Verification:</strong> We rarely check who wrote the package or how many people are actually using it.</li>
+</ul>
+
+<p>Speed is our biggest strength… and sometimes our biggest weakness.</p>
+
+<img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1200&q=80" alt="Security Risk Visual" style="width: 100%; border-radius: 12px; margin: 3rem 0;" />
+
+<h2>The Real Risks (Grounded in Reality)</h2>
+
+<p>It’s not just about a hacker "taking over your laptop." The risks are more subtle but equally damaging:</p>
+<ul>
+  <li><strong>Malicious Code:</strong> Scripts that run during installation to steal environment variables (like your API keys).</li>
+  <li><strong>Data Leaks:</strong> Packages that "phone home" with your local data or browser history.</li>
+  <li><strong>System Compromise:</strong> Opening a shell that gives remote access to your machine.</li>
+  <li><strong>Breaking Your Project:</strong> Malicious updates that intentionally delete files or corrupt your repository.</li>
+</ul>
+
+<div style="background-color: #eff6ff; border-left: 4px solid #3b82f6; padding: 2rem; border-radius: 12px; margin: 3rem 0;">
+  <h3 style="color: #1e40af; margin-top: 0;">🔥 How to Stay Safe: Actionable Steps</h3>
+  <ul style="list-style: none; padding: 0;">
+    <li style="margin-bottom: 1rem;"><strong>1. Check Popularity:</strong> Look for at least a few thousand weekly downloads. High usage usually means more eyes on the code.</li>
+    <li style="margin-bottom: 1rem;"><strong>2. Check the GitHub Repo:</strong> Does it have stars? Is the last commit recent? An abandoned repo is a security hole.</li>
+    <li style="margin-bottom: 1rem;"><strong>3. Look at the Author:</strong> Is it a known organization or a random account created yesterday?</li>
+    <li style="margin-bottom: 1rem;"><strong>4. Avoid One-Off Packages:</strong> If there's a well-known library that does the same thing, use it instead of a random utility.</li>
+    <li style="margin-bottom: 1rem;"><strong>5. Run <code>npm audit</code>:</strong> npm has a built-in tool that scans your projects for known vulnerabilities. Use it!</li>
+    <li style="margin-bottom: 1rem;"><strong>6. Lock Your Versions:</strong> Use <code>package-lock.json</code> to ensure you aren't accidentally pulling in a broken "minor" update.</li>
+  </ul>
+</div>
+
+<div style="background-color: #f1f5f9; border: 1px solid #cbd5e1; padding: 2rem; border-radius: 12px; margin: 3rem 0;">
+  <h3 style="margin-top: 0;">✔ Quick Safety Checklist</h3>
+  <p style="margin-bottom: 1.5rem; color: #475569;">Before you hit Enter on <code>npm install</code>, tick these boxes:</p>
+  <div style="display: grid; gap: 0.75rem;">
+    <div style="display: flex; align-items: center; gap: 0.75rem;"><span style="color: #10b981; font-weight: bold;">✔</span> Check downloads (>1k/week)</div>
+    <div style="display: flex; align-items: center; gap: 0.75rem;"><span style="color: #10b981; font-weight: bold;">✔</span> Check GitHub repo (stars & activity)</div>
+    <div style="display: flex; align-items: center; gap: 0.75rem;"><span style="color: #10b981; font-weight: bold;">✔</span> Check last update (within 6 months)</div>
+    <div style="display: flex; align-items: center; gap: 0.75rem;"><span style="color: #10b981; font-weight: bold;">✔</span> Avoid unknown authors</div>
+    <div style="display: flex; align-items: center; gap: 0.75rem;"><span style="color: #10b981; font-weight: bold;">✔</span> Run <code>npm audit</code></div>
+  </div>
+</div>
+
+<h2>Risky Behavior vs. Safe Practice</h2>
+
+<div style="overflow-x: auto; margin: 2rem 0; border: 1px solid #e2e8f0; border-radius: 12px;">
+  <table style="width: 100%; border-collapse: collapse; text-align: left;">
+    <thead style="background-color: #f8fafc;">
+      <tr>
+        <th style="padding: 1rem; border-bottom: 1px solid #e2e8f0; color: #ef4444;">Risky Behavior</th>
+        <th style="padding: 1rem; border-bottom: 1px solid #e2e8f0; color: #10b981;">Safe Practice</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding: 1rem; border-bottom: 1px solid #e2e8f0;">Installing a package with 50 weekly downloads based on a random tutorial.</td>
+        <td style="padding: 1rem; border-bottom: 1px solid #e2e8f0;">Searching for the top-rated alternative for that specific functionality.</td>
+      </tr>
+      <tr>
+        <td style="padding: 1rem; border-bottom: 1px solid #e2e8f0;">Ignoring "Vulnerability Found" warnings in the terminal.</td>
+        <td style="padding: 1rem; border-bottom: 1px solid #e2e8f0;">Running <code>npm audit fix</code> immediately to patch known security gaps.</td>
+      </tr>
+      <tr>
+        <td style="padding: 1rem;">Not checking if the package has a linked GitHub repository.</td>
+        <td style="padding: 1rem;">Verifying the source code and observing the community engagement.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>Essential Tools in Your Terminal</h2>
+
+<p>You don't need to be a DevOps engineer to stay safe. Just remember these two commands:</p>
+
+<pre><code># Scan for vulnerabilities
+npm audit
+
+# Fix minor issues
+npm audit fix</code></pre>
+
+<h2>Final Insight</h2>
+
+<p>Being a developer isn’t just about writing code that works. It’s about knowing what you can trust. The npm ecosystem is a beautiful example of open-source collaboration, but it’s our responsibility to use it wisely. </p>
+
+<p>Don't be afraid to use packages—just be smart about which ones you let into your project.</p>
+
+<p style="font-size: 1.25rem; font-weight: 700; text-align: center; margin-top: 3rem; color: #1e40af; line-height: 1.4;">
+  “Your terminal is a powerful tool. Don't hand the keys to a stranger.”
+</p>
+    `
+  },
 ];
 
 export function getAllArticles() {
