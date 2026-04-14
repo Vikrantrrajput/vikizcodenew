@@ -10,21 +10,19 @@ export default function NewsletterForm() {
         e.preventDefault();
         setStatus("loading");
 
-        const formData = new FormData();
-        formData.append("form-name", "newsletter");
-        formData.append("email", email);
-
         try {
-            const response = await fetch("/", {
+            const response = await fetch("/api/subscribe", {
                 method: "POST",
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: new URLSearchParams(formData as any).toString(),
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email }),
             });
 
             if (response.ok) {
                 setStatus("success");
                 setEmail("");
             } else {
+                const data = await response.json();
+                console.error("Subscription error:", data.error);
                 setStatus("error");
             }
         } catch (error) {
@@ -68,10 +66,7 @@ export default function NewsletterForm() {
                         <form
                             onSubmit={handleSubmit}
                             className="flex flex-col sm:flex-row gap-4"
-                            name="newsletter"
-                            data-netlify="true"
                         >
-                            <input type="hidden" name="form-name" value="newsletter" />
                             <input
                                 type="email"
                                 required
