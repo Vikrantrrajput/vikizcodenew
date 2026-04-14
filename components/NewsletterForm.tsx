@@ -5,10 +5,12 @@ import { useState } from "react";
 export default function NewsletterForm() {
     const [email, setEmail] = useState("");
     const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+    const [errorMessage, setErrorMessage] = useState("");
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setStatus("loading");
+        setErrorMessage("");
 
         try {
             const response = await fetch("/api/subscribe", {
@@ -17,16 +19,24 @@ export default function NewsletterForm() {
                 body: JSON.stringify({ email }),
             });
 
+            const data = await response.json();
+
             if (response.ok) {
                 setStatus("success");
                 setEmail("");
             } else {
-                const data = await response.json();
+                if (data.error === "ALREADY_SUBSCRIBED") {
+                    setStatus("success");
+                    setEmail("");
+                    return;
+                }
                 console.error("Subscription error:", data.error);
+                setErrorMessage(data.error || "Something went wrong. Please try again later.");
                 setStatus("error");
             }
         } catch (error) {
             console.error("Submission error:", error);
+            setErrorMessage("Connection error. Please check your internet and try again.");
             setStatus("error");
         }
     };
@@ -60,7 +70,7 @@ export default function NewsletterForm() {
                     <>
                         {status === "error" && (
                             <p className="text-red-500 mb-4 text-sm font-medium bg-red-50 p-3 rounded-lg border border-red-100">
-                                Something went wrong. Please try again later.
+                                {errorMessage}
                             </p>
                         )}
                         <form
