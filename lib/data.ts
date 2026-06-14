@@ -1343,6 +1343,197 @@ npm audit fix</code></pre>
 </p>
     `
   },
+  {
+    slug: "i-was-hardcoding-api-keys-in-my-projects",
+    title: "I Was Hardcoding API Keys in My Projects. Then I Realized Why That's a Bad Idea.",
+    category: "Cybersecurity",
+    readTime: "6 min read",
+    date: "June 11, 2026",
+    views: "0 views",
+    trending: true,
+    image: "/blog-images/hardcoded-api-key-hero.svg",
+    tags: ["Security", "API Keys", "Beginners", "Web Dev"],
+    summary: "I was leaving my API keys in public code, thinking it was harmless. Here is the story of how I learned the dangers of hardcoded secrets and how to use .env files instead.",
+    toc: [
+      { id: "mistake", title: "The Mistake I Didn't Realize I Was Making" },
+      { id: "click", title: "The Moment It Clicked" },
+      { id: "consequences", title: "What Actually Happens When API Keys Leak?" },
+      { id: "better-way", title: "The Better Way I Found: .env Files" },
+      { id: "changed", title: "What Changed In My Projects" },
+      { id: "lessons", title: "Lessons I Learned" }
+    ],
+    content: `
+
+<p style="font-size: 1.125rem; color: #64748b; margin-bottom: 2rem; font-style: italic;">
+  Imagine leaving your house key attached to your front door. That's closer to what I was doing than I realized.
+</p>
+
+<img src="/blog-images/house-key-vs-api-key.svg" alt="House key vs API key comparison visual" style="width: 100%; border-radius: 12px; margin-bottom: 2rem;" />
+
+<p>Whenever I built small projects using APIs—like a weather app pulling data from OpenWeatherMap or a movie dashboard using the TMDB API—I would simply write:</p>
+
+<pre><code class="language-javascript">const API_KEY = "my-secret-key";</code></pre>
+
+<p>It worked. The app fetched the data, the UI rendered beautifully, and I felt like a wizard. Most tutorials I watched online seemed to do something similar. They would paste their API key directly into the code just to get the project up and running quickly. So, I never questioned it. I only cared about making the project work and seeing those green checkmarks.</p>
+
+<p>I pushed my code to GitHub, shared the link with my friends, and went to bed. What could possibly go wrong?</p>
+
+<h2 id="mistake">The Mistake I Didn't Realize I Was Making</h2>
+
+<p>As beginners, we are focused on functionality. We want to see our React components load, our API requests return a 200 OK status, and our CSS look decent. We aren't thinking about production-grade practices or security configuration. When we see a code snippet in a tutorial showing <code>const API_KEY = "xyz"</code>, we assume that’s the standard way to do it.</p>
+
+<p>It feels normal because the key is right there next to the code that uses it. You don't have to worry about additional config files or importing modules. But what tutorials often hide is that they are simplifying things for demonstration purposes. They don't show the setup of environment variables because they don't want to add three extra minutes to the video and risk losing the viewer's attention. In the real world, however, hardcoding keys in public files is one of the most common security mistakes a developer can make.</p>
+
+<h2 id="click">The Moment It Clicked</h2>
+
+<p>One day, I was chatting with a senior student who was reviewing my portfolio. He opened one of my GitHub repositories, pointed at a file, and said, <em>"You know anyone can just copy your API key and use it, right?"</em></p>
+
+<p>That was the moment the analogy clicked: <strong>Imagine leaving your house key attached to your front door.</strong></p>
+
+<p>Anyone walking past your door could just grab it and walk right in. When you hardcode an API key inside code that gets pushed to a public GitHub repository, you're doing the exact same thing. Public repositories are open to the entire internet. And it's not just humans who can see it; automated bots scan GitHub 24/7 looking for exposed keys, passwords, and tokens. Within seconds of a push, your key can be in someone else's hands.</p>
+
+<img src="/blog-images/api-key-flowchart.svg" alt="Flowchart showing the hardcoding path vs .env path" style="width: 100%; border-radius: 12px; margin-bottom: 2rem;" />
+
+<h2 id="consequences">What Actually Happens When API Keys Leak?</h2>
+
+<p>When I first realized this, I wondered: <em>Okay, but I'm just a student. Who would want to steal my weather API key?</em> It turns out, bots don't care who you are. They just want access. Understanding <strong>developer security</strong> starts with knowing what happens when credentials leak. Here is a quick breakdown of common mistakes and their immediate results:</p>
+
+<div style="overflow-x: auto; margin: 2rem 0; border: 1px solid #e5e7eb; border-radius: 8px;">
+  <table style="width: 100%; border-collapse: collapse; text-align: left;">
+    <thead style="background-color: #f9fafb;">
+      <tr>
+        <th style="padding: 1rem; border-bottom: 1px solid #e5e7eb; font-weight: 700; color: #0f172a;">Mistake</th>
+        <th style="padding: 1rem; border-bottom: 1px solid #e5e7eb; font-weight: 700; color: #0f172a;">Result</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding: 1rem; border-bottom: 1px solid #e5e7eb; color: #475569; font-weight: 600;">API key exposed</td>
+        <td style="padding: 1rem; border-bottom: 1px solid #e5e7eb; color: #475569;">Anyone can use it</td>
+      </tr>
+      <tr>
+        <td style="padding: 1rem; border-bottom: 1px solid #e5e7eb; color: #475569; font-weight: 600;">No usage limits</td>
+        <td style="padding: 1rem; border-bottom: 1px solid #e5e7eb; color: #475569;">Unexpected API consumption</td>
+      </tr>
+      <tr>
+        <td style="padding: 1rem; color: #475569; font-weight: 600;">Public repository</td>
+        <td style="padding: 1rem; color: #475569;">Automated bots can scan it</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p>Without proper <strong>secret management</strong>, a leaked key can quickly lead to:</p>
+<ul>
+  <li><strong>Exhausted API Limits:</strong> Bots will drain your daily quota in seconds, causing your application to stop working.</li>
+  <li><strong>Unexpected Bills:</strong> If your API account has a credit card linked (like OpenAI or AWS), a leak can rack up bills of thousands of dollars overnight.</li>
+  <li><strong>Abuse of Services:</strong> Malicious actors can use your identity to scrape data or send spam, getting your developer account blacklisted.</li>
+</ul>
+
+<img src="/blog-images/hardcoded-api-key-hero.svg" alt="Exposed API key in editor visual" style="width: 100%; border-radius: 12px; margin-bottom: 2rem;" />
+
+<h2 id="better-way">The Better Way I Found: .env Files</h2>
+
+<p>So, how do we keep our keys working while keeping them safe? The solution is standard in professional web development: using <strong>environment variables</strong> stored in a <code>.env</code> file for proper <strong>secret management</strong>.</p>
+
+<p>A <code>.env</code> file is a simple, plain text file that sits in the root directory of your project. It contains key-value pairs of your sensitive configuration. Since the file is stored locally on your machine, it never gets pushed to GitHub—provided you add it to your <code>.gitignore</code> file.</p>
+
+<div style="background-color: #fffbeb; border-left: 4px solid #f59e0b; padding: 1.5rem; border-radius: 8px; margin: 2rem 0;">
+  <h4 style="color: #78350f; margin-top: 0;">⚠️ Crucial Technical Check</h4>
+  <p style="color: #92400e; margin-bottom: 0;"><strong>For backend secrets, keep API keys server-side. Never expose private keys inside frontend code.</strong> Make sure to understand that a <code>.env</code> file protects secrets during development, but it does not automatically make frontend-exposed keys private once built and deployed. If your React or Vue frontend code directly references a private key, that key will still be compiled into the static JavaScript files sent to the user's browser, where anyone can inspect them.</p>
+</div>
+
+<p>Here's how easy it is to set up:</p>
+
+<p><strong>1. The Old, Dangerous Way (Hardcoding):</strong></p>
+<pre><code class="language-javascript">// app.js
+const API_KEY = "my-secret-key-12345"; // Exposed to everyone!
+</code></pre>
+
+<p><strong>2. The Safe Way:</strong></p>
+<p>Create a file named <code>.env</code> in your project's root folder:</p>
+<pre><code># .env
+API_KEY=my-secret-key-12345
+</code></pre>
+
+<p>Then, read the key in your JavaScript file using <code>process.env</code>:</p>
+<pre><code class="language-javascript">// app.js
+const API_KEY = process.env.API_KEY; // The key remains hidden in code!
+</code></pre>
+
+<div style="overflow-x: auto; margin: 2rem 0; border: 1px solid #e5e7eb; border-radius: 8px;">
+  <table style="width: 100%; border-collapse: collapse; text-align: left;">
+    <thead style="background-color: #f9fafb;">
+      <tr>
+        <th style="padding: 1rem; border-bottom: 1px solid #e5e7eb; font-weight: 700; color: #0f172a;">Hardcoded API Key</th>
+        <th style="padding: 1rem; border-bottom: 1px solid #e5e7eb; font-weight: 700; color: #0f172a;">.env File</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding: 1rem; border-bottom: 1px solid #e5e7eb; color: #475569;">Stored directly in code</td>
+        <td style="padding: 1rem; border-bottom: 1px solid #e5e7eb; color: #475569;">Stored separately</td>
+      </tr>
+      <tr>
+        <td style="padding: 1rem; border-bottom: 1px solid #e5e7eb; color: #475569;">Easy to accidentally upload</td>
+        <td style="padding: 1rem; border-bottom: 1px solid #e5e7eb; color: #475569;">Easier to protect</td>
+      </tr>
+      <tr>
+        <td style="padding: 1rem; border-bottom: 1px solid #e5e7eb; color: #475569;">Shared with repository</td>
+        <td style="padding: 1rem; border-bottom: 1px solid #e5e7eb; color: #475569;">Can remain private</td>
+      </tr>
+      <tr>
+        <td style="padding: 1rem; color: #475569;">Risky for public projects</td>
+        <td style="padding: 1rem; color: #475569;">Safer approach</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div style="background-color: #eff6ff; border-left: 4px solid #3b82f6; padding: 1.5rem; border-radius: 8px; margin: 2rem 0;">
+  <h4 style="color: #1e40af; margin-top: 0; font-weight: 700;">💡 Crucial Step: The .gitignore File</h4>
+  <p style="color: #1e3a8a; margin-bottom: 0;">None of this works if you still upload your <code>.env</code> file. Make sure to open your <code>.gitignore</code> file and add <code>.env</code> to a new line. This tells Git to completely ignore the file, keeping it safely on your local computer.</p>
+</div>
+
+<div style="background-color: #f0fdf4; border-left: 4px solid #22c55e; padding: 1.5rem; border-radius: 8px; margin: 2rem 0;">
+  <h3 style="color: #166534; margin-top: 0; font-size: 1.2rem;">✔ Developer Security Checklist (Before Pushing to GitHub)</h3>
+  <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 0.5rem;">
+    <li style="display: flex; align-items: center; gap: 0.5rem; color: #14532d; font-weight: bold;"><span style="color: #22c55e;">✔</span> Remove API keys from source code</li>
+    <li style="display: flex; align-items: center; gap: 0.5rem; color: #14532d; font-weight: bold;"><span style="color: #22c55e;">✔</span> Check .env files are kept locally</li>
+    <li style="display: flex; align-items: center; gap: 0.5rem; color: #14532d; font-weight: bold;"><span style="color: #22c55e;">✔</span> Update .gitignore file to include .env</li>
+    <li style="display: flex; align-items: center; gap: 0.5rem; color: #14532d; font-weight: bold;"><span style="color: #22c55e;">✔</span> Rotate leaked keys immediately if exposed</li>
+    <li style="display: flex; align-items: center; gap: 0.5rem; color: #14532d; font-weight: bold;"><span style="color: #22c55e;">✔</span> Review commits and diffs before pushing to GitHub</li>
+  </ul>
+</div>
+
+<h2 id="changed">What Changed In My Projects</h2>
+
+<p>Once I started using <code>.env</code> files, I noticed a change in how I approached building apps. It wasn't just about security; it was about adopting a more professional developer mindset.</p>
+
+<p>I stopped treating my code like a collection of temporary scripts and started treating it like a real application. I realized that writing code that works is only the first step. Making it clean, configurable, and secure is what turns a student project into something to be proud of. It made me feel like I was transitioning from just playing around with tutorials to actually building code the way the industry does.</p>
+
+<h2 id="lessons">Lessons I Learned</h2>
+
+<p>Looking back on my mistake, here are the main lessons I carried forward:</p>
+
+<ul>
+  <li><strong>Just because code works doesn't mean it's safe.</strong> Functional code is not the same as secure code. It’s always worth checking if there are hidden vulnerabilities in your setup.</li>
+  <li><strong>Small habits matter.</strong> Creating a <code>.env</code> and <code>.gitignore</code> file takes less than 30 seconds, but it saves you from major headaches down the road. Make it a default habit for every new project.</li>
+  <li><strong>Learning happens through mistakes.</strong> Many developers make this mistake while learning. The important part is building better habits early, especially around <strong>developer security</strong> and <strong>secret management</strong>. Don't feel bad if you've done this; it's a normal part of the learning process.</li>
+  <li><strong>Understanding why something exists is as important as using it.</strong> Don't just follow tutorials blindly. Take the time to understand why tools like environment variables or build tools are recommended.</li>
+</ul>
+
+<h2>Conclusion</h2>
+
+<p>Looking back, hardcoding API keys wasn't a huge mistake—it was simply something I didn't know. When we are learning, we can't possibly know everything from day one.</p>
+
+<p>The important part wasn't avoiding mistakes altogether. It was learning from them before they became bigger, more expensive problems.</p>
+
+<p>So, if you currently have a project sitting on GitHub with an API key pasted right there in the source code, don't panic. Take five minutes today: create a <code>.env</code> file, add it to your <code>.gitignore</code>, rotate your leaked API key on the service provider's site, and secure your project. You'll be one step closer to coding like a professional.</p>
+
+<p>Save this before starting your next project. Have you ever accidentally leaked a key or made a similar mistake? Let's discuss in the comments!</p>
+    `
+  },
 ];
 
 export function getAllArticles() {

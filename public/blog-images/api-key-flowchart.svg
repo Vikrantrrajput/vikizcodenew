@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090a0f" />
+      <stop offset="100%" stop-color="#040508" />
+    </linearGradient>
+
+    <!-- Node Gradients -->
+    <linearGradient id="unsafe-node" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3b1319" />
+      <stop offset="100%" stop-color="#1c080b" />
+    </linearGradient>
+
+    <linearGradient id="safe-node" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#064e3b" />
+      <stop offset="100%" stop-color="#022c22" />
+    </linearGradient>
+
+    <linearGradient id="neutral-node" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+
+    <!-- Red Glow Filter -->
+    <filter id="glow-red" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Green Glow Filter -->
+    <filter id="glow-green" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="600" fill="url(#bg-grad)" />
+
+  <!-- Title & Description -->
+  <text x="600" y="55" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-size="26" font-weight="900" letter-spacing="1">API KEY EXPOSURE FLOWCHART</text>
+  <text x="600" y="85" text-anchor="middle" fill="#94a3b8" font-family="sans-serif" font-size="15" font-weight="bold">The path to security: How using a .env file protects your credentials from leaks.</text>
+
+  <!-- START NODE (Left-Center) -->
+  <g transform="translate(60, 245)">
+    <!-- Outline Glow -->
+    <rect width="180" height="90" rx="12" fill="url(#neutral-node)" stroke="#475569" stroke-width="2.5" />
+    <text x="90" y="40" text-anchor="middle" fill="#f8fafc" font-family="sans-serif" font-size="15" font-weight="bold">Write Code</text>
+    <text x="90" y="62" text-anchor="middle" fill="#64748b" font-family="sans-serif" font-size="12" font-weight="bold">(Needs API Keys)</text>
+    
+    <!-- Code Icon -->
+    <g transform="translate(15, 12)" stroke="#94a3b8" stroke-width="2" fill="none">
+      <polyline points="5 5 0 10 5 15" />
+      <polyline points="15 5 20 10 15 15" />
+      <line x1="12" y1="4" x2="8" y2="16" />
+    </g>
+  </g>
+
+  <!-- SPLIT ARROWS (From Start Node to Safe/Unsafe paths) -->
+  <!-- Upper split (Unsafe path - Red) -->
+  <path d="M 240,270 L 320,180" fill="none" stroke="#ef4444" stroke-width="3" stroke-dasharray="6,4" marker-end="url(#arrow-red)" />
+  <text x="300" y="240" text-anchor="middle" fill="#f87171" font-family="sans-serif" font-size="12" font-weight="bold" transform="rotate(-30, 280, 230)">❌ Hardcoded Key</text>
+
+  <!-- Lower split (Safe path - Green) -->
+  <path d="M 240,310 L 320,400" fill="none" stroke="#10b981" stroke-width="3" marker-end="url(#arrow-green)" />
+  <text x="300" y="340" text-anchor="middle" fill="#34d399" font-family="sans-serif" font-size="12" font-weight="bold" transform="rotate(30, 280, 350)">✅ .env + .gitignore</text>
+
+
+  <!-- ==================== PATH 1: UNSAFE PATH (TOP) ==================== -->
+  
+  <!-- Step 1: Hardcoded in source -->
+  <g transform="translate(340, 115)">
+    <rect width="200" height="90" rx="12" fill="url(#unsafe-node)" stroke="#ef4444" stroke-width="2" />
+    <text x="100" y="38" text-anchor="middle" fill="#fca5a5" font-family="sans-serif" font-size="14" font-weight="bold">Key in Code</text>
+    <text x="100" y="60" text-anchor="middle" fill="#ef4444" font-family="monospace" font-size="11" font-weight="bold">const KEY = "abc-123"</text>
+    <circle cx="100" cy="74" r="4" fill="#ef4444" />
+  </g>
+  
+  <!-- Arrow -->
+  <path d="M 540,160 L 600,160" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="5,3" />
+
+  <!-- Step 2: Push to GitHub -->
+  <g transform="translate(610, 115)">
+    <rect width="200" height="90" rx="12" fill="url(#unsafe-node)" stroke="#ef4444" stroke-width="2" />
+    <text x="100" y="38" text-anchor="middle" fill="#fca5a5" font-family="sans-serif" font-size="14" font-weight="bold">Git Push to GitHub</text>
+    <text x="100" y="60" text-anchor="middle" fill="#fca5a5" font-family="sans-serif" font-size="11" font-weight="bold">Public Repository</text>
+    
+    <!-- Warning Icon -->
+    <path d="M100,68 L106,80 L94,80 Z" fill="#ef4444" />
+  </g>
+
+  <!-- Arrow -->
+  <path d="M 810,160 L 870,160" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="5,3" />
+
+  <!-- Step 3: Exposed! -->
+  <g transform="translate(880, 115)" filter="url(#glow-red)">
+    <rect width="250" height="90" rx="12" fill="#7f1d1d" stroke="#ef4444" stroke-width="3" />
+    <text x="125" y="35" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-size="14" font-weight="900">🚨 KEY EXPOSED &amp; ABUSED</text>
+    <text x="125" y="58" text-anchor="middle" fill="#fca5a5" font-family="sans-serif" font-size="11" font-weight="bold">Bots steal keys within seconds.</text>
+    <text x="125" y="75" text-anchor="middle" fill="#fca5a5" font-family="sans-serif" font-size="11" font-weight="bold">Result: Banned / Heavy Bills!</text>
+  </g>
+
+
+  <!-- ==================== PATH 2: SECURE PATH (BOTTOM) ==================== -->
+
+  <!-- Step 1: Config .env locally -->
+  <g transform="translate(340, 375)">
+    <rect width="200" height="90" rx="12" fill="url(#safe-node)" stroke="#10b981" stroke-width="2" />
+    <text x="100" y="38" text-anchor="middle" fill="#a7f3d0" font-family="sans-serif" font-size="14" font-weight="bold">Keys in .env File</text>
+    <text x="100" y="60" text-anchor="middle" fill="#34d399" font-family="monospace" font-size="11" font-weight="bold">API_KEY=abc-123</text>
+    <text x="100" y="75" text-anchor="middle" fill="#34d399" font-family="sans-serif" font-size="10" font-weight="bold">(Stored locally only)</text>
+  </g>
+
+  <!-- Arrow -->
+  <path d="M 540,420 L 600,420" fill="none" stroke="#10b981" stroke-width="2.5" />
+
+  <!-- Step 2: Ignored by git -->
+  <g transform="translate(610, 375)">
+    <rect width="200" height="90" rx="12" fill="url(#safe-node)" stroke="#10b981" stroke-width="2" />
+    <text x="100" y="36" text-anchor="middle" fill="#a7f3d0" font-family="sans-serif" font-size="14" font-weight="bold">Added to .gitignore</text>
+    <text x="100" y="58" text-anchor="middle" fill="#a7f3d0" font-family="sans-serif" font-size="11" font-weight="bold">Shields the file from git.</text>
+    
+    <!-- Shield Icon -->
+    <path d="M92,68 C92,68 100,65 108,68 C108,74 104,81 108,86 C100,88 92,86 92,86 Z" fill="#10b981" />
+  </g>
+
+  <!-- Arrow -->
+  <path d="M 810,420 L 870,420" fill="none" stroke="#10b981" stroke-width="2.5" />
+
+  <!-- Step 3: Secure! -->
+  <g transform="translate(880, 375)" filter="url(#glow-green)">
+    <rect width="250" height="90" rx="12" fill="#064e3b" stroke="#10b981" stroke-width="3" />
+    <text x="125" y="35" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-size="14" font-weight="900">🛡️ SECURE DEPLOYMENT</text>
+    <text x="125" y="58" text-anchor="middle" fill="#a7f3d0" font-family="sans-serif" font-size="11" font-weight="bold">Safe repository. Set env vars</text>
+    <text x="125" y="75" text-anchor="middle" fill="#a7f3d0" font-family="sans-serif" font-size="11" font-weight="bold">directly in host dashboard.</text>
+  </g>
+
+  <!-- Marker Definitions for Arrow Heads -->
+  <defs>
+    <marker id="arrow-red" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 Z" fill="#ef4444" />
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 Z" fill="#10b981" />
+    </marker>
+  </defs>
+  
+</svg>

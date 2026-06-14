@@ -1,0 +1,186 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0f1d" />
+      <stop offset="100%" stop-color="#050811" />
+    </linearGradient>
+
+    <!-- Panel Gradient -->
+    <linearGradient id="panel-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.95" />
+    </linearGradient>
+
+    <!-- Danger Glow -->
+    <filter id="danger-glow" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur stdDeviation="10" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Door Highlight -->
+    <linearGradient id="door-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0f766e" />
+      <stop offset="100%" stop-color="#115e59" />
+    </linearGradient>
+    
+    <!-- Gold Key Gradient -->
+    <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24" />
+      <stop offset="50%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#d97706" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="600" fill="url(#bg-grad)" />
+
+  <!-- Title -->
+  <text x="600" y="60" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-size="28" font-weight="900" letter-spacing="1">THE MOMENT IT CLICKS: DIFFERENT KEYS, SAME MISTAKE</text>
+  <text x="600" y="90" text-anchor="middle" fill="#94a3b8" font-family="sans-serif" font-size="16" font-weight="bold">Why hardcoding API keys is exactly like leaving your house key on the front door.</text>
+
+  <!-- LEFT PANEL: House Key Metaphor -->
+  <g transform="translate(100, 130)">
+    <!-- Container -->
+    <rect width="460" height="400" rx="16" fill="url(#panel-grad)" stroke="#334155" stroke-width="2" />
+    <rect width="460" height="50" rx="16" fill="#1e293b" />
+    <!-- Clean up header bottom corners -->
+    <rect x="0" y="30" width="460" height="20" fill="#1e293b" />
+    <line x1="0" y1="50" x2="460" y2="50" stroke="#334155" stroke-width="1.5" />
+    
+    <!-- Title -->
+    <text x="230" y="32" text-anchor="middle" fill="#f8fafc" font-family="sans-serif" font-size="16" font-weight="bold">1. Physical World (House Key)</text>
+    
+    <!-- Door Graphic -->
+    <g transform="translate(70, 80)">
+      <!-- Door Frame -->
+      <rect x="0" y="0" width="140" height="240" rx="4" fill="#1e293b" stroke="#475569" stroke-width="4" />
+      <!-- Door Body -->
+      <rect x="10" y="10" width="120" height="230" rx="2" fill="url(#door-grad)" />
+      
+      <!-- Door panels (minimalist design) -->
+      <rect x="25" y="25" width="40" height="85" fill="#134e4a" opacity="0.5" rx="2" />
+      <rect x="75" y="25" width="40" height="85" fill="#134e4a" opacity="0.5" rx="2" />
+      <rect x="25" y="130" width="40" height="85" fill="#134e4a" opacity="0.5" rx="2" />
+      <rect x="75" y="130" width="40" height="85" fill="#134e4a" opacity="0.5" rx="2" />
+
+      <!-- Lock & Handle -->
+      <circle cx="115" cy="115" r="10" fill="#0f172a" stroke="#d97706" stroke-width="2" />
+      <rect x="110" y="112" width="12" height="6" rx="2" fill="#d97706" />
+
+      <!-- Key in the Lock (Zoomed Metaphorical Key) -->
+      <g transform="translate(115, 115) scale(0.9)">
+        <!-- Highlight Ring around key -->
+        <circle cx="40" cy="0" r="30" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="5,5" filter="url(#danger-glow)" />
+        <circle cx="40" cy="0" r="5" fill="#ef4444" />
+        
+        <!-- Key itself extending out -->
+        <!-- Key Head -->
+        <circle cx="50" cy="0" r="12" fill="none" stroke="url(#gold-grad)" stroke-width="4" />
+        <circle cx="50" cy="0" r="4" fill="url(#gold-grad)" />
+        <!-- Key Shaft -->
+        <rect x="0" y="-3" width="40" height="6" fill="url(#gold-grad)" />
+        <!-- Key Teeth -->
+        <rect x="10" y="3" width="5" height="8" fill="url(#gold-grad)" />
+        <rect x="20" y="3" width="5" height="5" fill="url(#gold-grad)" />
+      </g>
+    </g>
+
+    <!-- Danger Metaphor Box -->
+    <rect x="250" y="120" width="180" height="150" rx="10" fill="#1c1917" stroke="#ef4444" stroke-width="1.5" />
+    <text x="340" y="150" text-anchor="middle" fill="#ef4444" font-family="sans-serif" font-size="16" font-weight="bold">⚠️ EXPOSED</text>
+    <text x="340" y="185" text-anchor="middle" fill="#fca5a5" font-family="sans-serif" font-size="13" font-weight="bold">Anyone walking past</text>
+    <text x="340" y="205" text-anchor="middle" fill="#fca5a5" font-family="sans-serif" font-size="13" font-weight="bold">your house can just</text>
+    <text x="340" y="225" text-anchor="middle" fill="#fca5a5" font-family="sans-serif" font-size="13" font-weight="bold">grab the key and enter.</text>
+    <circle cx="340" cy="245" r="3" fill="#ef4444" />
+
+    <!-- Caption description -->
+    <text x="230" y="360" text-anchor="middle" fill="#94a3b8" font-family="sans-serif" font-size="14" font-weight="bold">"It's just a key, what could go wrong?"</text>
+  </g>
+
+  <!-- RIGHT PANEL: API Key in Code -->
+  <g transform="translate(640, 130)">
+    <!-- Container -->
+    <rect width="460" height="400" rx="16" fill="url(#panel-grad)" stroke="#334155" stroke-width="2" />
+    <rect width="460" height="50" rx="16" fill="#1e293b" />
+    <!-- Clean up header bottom corners -->
+    <rect x="0" y="30" width="460" height="20" fill="#1e293b" />
+    <line x1="0" y1="50" x2="460" y2="50" stroke="#334155" stroke-width="1.5" />
+
+    <!-- Title -->
+    <text x="230" y="32" text-anchor="middle" fill="#f8fafc" font-family="sans-serif" font-size="16" font-weight="bold">2. Digital World (Exposed API Key)</text>
+
+    <!-- Code Editor UI Mockup -->
+    <g transform="translate(25, 80)">
+      <!-- Editor Window -->
+      <rect width="410" height="240" rx="10" fill="#0b0f19" stroke="#4338ca" stroke-width="1.5" />
+      <rect width="410" height="30" rx="10" fill="#0f111a" />
+      <rect x="0" y="20" width="410" height="10" fill="#0f111a" />
+      
+      <!-- Dots -->
+      <circle cx="15" cy="15" r="4" fill="#ef4444" />
+      <circle cx="27" cy="15" r="4" fill="#fbbf24" />
+      <circle cx="39" cy="15" r="4" fill="#10b981" />
+      <text x="205" y="20" text-anchor="middle" fill="#475569" font-family="monospace" font-size="11" font-weight="bold">weather.js</text>
+
+      <!-- Code lines inside window -->
+      <g transform="translate(20, 55)" font-family="monospace" font-size="12" font-weight="bold">
+        <text x="0" y="15">
+          <tspan fill="#f472b6">const</tspan>
+          <tspan fill="#e2e8f0"> express </tspan>
+          <tspan fill="#f472b6">=</tspan>
+          <tspan fill="#38bdf8"> require</tspan>
+          <tspan fill="#e2e8f0">('express');</tspan>
+        </text>
+
+        <!-- Danger line with red outline -->
+        <rect x="-5" y="28" width="380" height="22" rx="4" fill="#7f1d1d" fill-opacity="0.4" stroke="#ef4444" stroke-width="1" />
+        <text x="0" y="44" fill="#ef4444">
+          <tspan fill="#ef4444">const</tspan>
+          <tspan fill="#f87171"> API_KEY </tspan>
+          <tspan fill="#ef4444">=</tspan>
+          <tspan fill="#f87171"> "sk-live-59aB..."</tspan>
+          <tspan fill="#ef4444">; ⚠️</tspan>
+        </text>
+
+        <text x="0" y="74">
+          <tspan fill="#f472b6">const</tspan>
+          <tspan fill="#e2e8f0"> app </tspan>
+          <tspan fill="#f472b6">=</tspan>
+          <tspan fill="#38bdf8"> express</tspan>
+          <tspan fill="#e2e8f0">();</tspan>
+        </text>
+
+        <text x="0" y="104">
+          <tspan fill="#64748b">// Pushed to Public Repo</tspan>
+        </text>
+        
+        <text x="0" y="134">
+          <tspan fill="#34d399">app.listen(3000);</tspan>
+        </text>
+      </g>
+      
+      <!-- Bots Scanning visual overlay -->
+      <g transform="translate(260, 100)" filter="url(#danger-glow)">
+        <circle cx="50" cy="50" r="45" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,4" />
+        <!-- Scanner laser -->
+        <line x1="50" y1="50" x2="-60" y2="-10" stroke="#ef4444" stroke-width="2.5" />
+        
+        <!-- Bot head graphic -->
+        <rect x="35" y="35" width="30" height="25" rx="4" fill="#18070d" stroke="#ef4444" stroke-width="2" />
+        <circle cx="43" cy="45" r="3" fill="#ef4444" />
+        <circle cx="57" cy="45" r="3" fill="#ef4444" />
+        <path d="M 40,53 L 60,53" stroke="#ef4444" stroke-width="1.5" />
+        <text x="50" y="27" text-anchor="middle" fill="#ef4444" font-family="sans-serif" font-size="9" font-weight="900">BOT SCANNER</text>
+      </g>
+    </g>
+
+    <!-- Danger description -->
+    <rect x="25" y="335" width="410" height="45" rx="8" fill="#1c1917" stroke="#ef4444" stroke-width="1.5" />
+    <text x="230" y="362" text-anchor="middle" fill="#fca5a5" font-family="sans-serif" font-size="12" font-weight="bold">⚠️ Automated scripts scan GitHub 24/7. Leaks happen in seconds.</text>
+  </g>
+
+</svg>

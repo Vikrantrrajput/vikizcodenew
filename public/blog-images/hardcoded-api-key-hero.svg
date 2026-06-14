@@ -1,0 +1,230 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#080711" />
+      <stop offset="50%" stop-color="#0f0e26" />
+      <stop offset="100%" stop-color="#05050d" />
+    </linearGradient>
+
+    <!-- Code Editor Card Gradient -->
+    <linearGradient id="editor-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#0f0c29" stop-opacity="0.9" />
+    </linearGradient>
+
+    <!-- Red Danger Glow -->
+    <filter id="danger-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="12" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Cyan Cool Glow -->
+    <filter id="cyan-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Keyhole / Shield Glow -->
+    <linearGradient id="shield-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f43f5e" />
+      <stop offset="100%" stop-color="#be123c" />
+    </linearGradient>
+    
+    <!-- Code Highlight Gradient -->
+    <linearGradient id="danger-highlight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ef4444" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#ef4444" stop-opacity="0.05" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="675" fill="url(#bg-grad)" />
+
+  <!-- Abstract Grid/Cyber Lines -->
+  <g opacity="0.12">
+    <!-- Grid -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#6366f1" stroke-width="1" />
+    </pattern>
+    <rect width="1200" height="675" fill="url(#grid)" />
+    
+    <!-- Tech diagonal lines -->
+    <path d="M-100,200 L400,700 M800,-100 L1300,400 M100,-100 L800,600" stroke="#818cf8" stroke-width="2" />
+  </g>
+
+  <!-- Decorative Background Glows -->
+  <circle cx="200" cy="150" r="250" fill="#4f46e5" opacity="0.15" filter="url(#cyan-glow)" />
+  <circle cx="950" cy="450" r="300" fill="#f43f5e" opacity="0.12" filter="url(#danger-glow)" />
+  <circle cx="600" cy="300" r="180" fill="#06b6d4" opacity="0.1" filter="url(#cyan-glow)" />
+
+  <!-- Cyber Scanner Beam on the right (GitHub Crawler Metaphor) -->
+  <g transform="translate(850, 150)">
+    <!-- Radar circles -->
+    <circle cx="100" cy="100" r="150" fill="none" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="8,8" opacity="0.4" />
+    <circle cx="100" cy="100" r="90" fill="none" stroke="#ef4444" stroke-width="1" opacity="0.3" />
+    <circle cx="100" cy="100" r="40" fill="none" stroke="#ef4444" stroke-width="2" opacity="0.6" />
+    <line x1="100" y1="100" x2="230" y2="25" stroke="#ef4444" stroke-width="2" opacity="0.7" filter="url(#danger-glow)" />
+    
+    <!-- Bot spider icon/scanner head -->
+    <g transform="translate(220, 15)">
+      <circle cx="10" cy="10" r="12" fill="#1e1b4b" stroke="#ef4444" stroke-width="3" />
+      <circle cx="10" cy="10" r="4" fill="#ef4444" />
+      <!-- Scanning red cone -->
+      <path d="M10,10 L-250,180 L-180,270 Z" fill="#ef4444" opacity="0.06" />
+    </g>
+  </g>
+
+  <!-- Left: MacOS-Style Code Editor Window -->
+  <g transform="translate(80, 110)">
+    <!-- Window Shadow -->
+    <rect x="-10" y="-10" width="700" height="450" rx="20" fill="#000000" opacity="0.5" filter="url(#danger-glow)" />
+    
+    <!-- Window Border & Body -->
+    <rect x="0" y="0" width="680" height="430" rx="16" fill="url(#editor-grad)" stroke="#4338ca" stroke-width="2" />
+    
+    <!-- Header/Titlebar -->
+    <rect x="0" y="0" width="680" height="45" rx="16" fill="#110e2e" />
+    <!-- Clean up header bottom corners -->
+    <rect x="0" y="30" width="680" height="15" fill="#110e2e" />
+    <line x1="0" y1="45" x2="680" y2="45" stroke="#312e81" stroke-width="1" />
+    
+    <!-- Window Dots (Red, Yellow, Green) -->
+    <circle cx="25" cy="22" r="6" fill="#ef4444" />
+    <circle cx="45" cy="22" r="6" fill="#f59e0b" />
+    <circle cx="65" cy="22" r="6" fill="#10b981" />
+    
+    <!-- File tab -->
+    <path d="M110,45 L130,15 L260,15 L280,45 Z" fill="#1e1b4b" />
+    <text x="150" y="32" fill="#a5b4fc" font-family="monospace" font-size="13" font-weight="bold">weather-app.js</text>
+    
+    <!-- Code Editor Content -->
+    <g transform="translate(30, 80)" font-family="monospace" font-size="15" font-weight="bold">
+      <!-- Line Numbers -->
+      <g fill="#4338ca" text-anchor="end">
+        <text x="0" y="20">1</text>
+        <text x="0" y="60">2</text>
+        <text x="0" y="100">3</text>
+        <text x="0" y="140">4</text>
+        <text x="0" y="180">5</text>
+        <text x="0" y="220">6</text>
+        <text x="0" y="260">7</text>
+        <text x="0" y="300">8</text>
+      </g>
+
+      <!-- Code Text Lines -->
+      <g transform="translate(25, 0)">
+        <!-- Line 1 -->
+        <text x="0" y="20">
+          <tspan fill="#f472b6">import</tspan>
+          <tspan fill="#ffffff"> axios </tspan>
+          <tspan fill="#f472b6">from</tspan>
+          <tspan fill="#38bdf8"> 'axios'</tspan>
+          <tspan fill="#ffffff">;</tspan>
+        </text>
+
+        <!-- Line 2 -->
+        <text x="0" y="60">
+          <tspan fill="#f472b6">const</tspan>
+          <tspan fill="#818cf8"> PORT </tspan>
+          <tspan fill="#f472b6">=</tspan>
+          <tspan fill="#fb7185"> 3000</tspan>
+          <tspan fill="#ffffff">;</tspan>
+        </text>
+
+        <!-- Line 3 (Dangerous API Key Line) -->
+        <!-- Red background highlight under the line -->
+        <rect x="-10" y="82" width="585" height="30" rx="6" fill="url(#danger-highlight)" stroke="#ef4444" stroke-width="1.5" filter="url(#danger-glow)" opacity="0.8" />
+        
+        <text x="0" y="102">
+          <tspan fill="#f43f5e">const</tspan>
+          <tspan fill="#f43f5e"> API_KEY </tspan>
+          <tspan fill="#f43f5e">=</tspan>
+          <tspan fill="#f43f5e"> "sk-proj-4A9x92KzL8qR19t8Xy..."</tspan>
+          <tspan fill="#ef4444" font-weight="900"> ⚠️</tspan>
+        </text>
+
+        <!-- Line 4 -->
+        <text x="0" y="142">
+          <tspan fill="#f472b6">async function</tspan>
+          <tspan fill="#fbbf24"> fetchWeather</tspan>
+          <tspan fill="#ffffff">(city) {</tspan>
+        </text>
+
+        <!-- Line 5 -->
+        <text x="20" y="182">
+          <tspan fill="#f472b6">const</tspan>
+          <tspan fill="#ffffff"> url </tspan>
+          <tspan fill="#f472b6">=</tspan>
+          <tspan fill="#38bdf8"> `api.openweathermap.org?q=${city}&amp;key=`</tspan>
+          <tspan fill="#ffffff">;</tspan>
+        </text>
+
+        <!-- Line 6 -->
+        <text x="20" y="222">
+          <tspan fill="#f472b6">const</tspan>
+          <tspan fill="#ffffff"> res </tspan>
+          <tspan fill="#f472b6">=</tspan>
+          <tspan fill="#f472b6"> await</tspan>
+          <tspan fill="#ffffff"> axios.get(url + </tspan>
+          <tspan fill="#60a5fa">API_KEY</tspan>
+          <tspan fill="#ffffff">);</tspan>
+        </text>
+
+        <!-- Line 7 -->
+        <text x="20" y="262">
+          <tspan fill="#f472b6">return</tspan>
+          <tspan fill="#ffffff"> res.data;</tspan>
+        </text>
+
+        <!-- Line 8 -->
+        <text x="0" y="302">
+          <tspan fill="#ffffff">}</tspan>
+        </text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Right: Floating Warning/Leak Alert HUD -->
+  <g transform="translate(770, 240)">
+    <!-- Main Warning Card -->
+    <rect x="-10" y="-10" width="360" height="230" rx="16" fill="#180e22" stroke="#f43f5e" stroke-width="2.5" filter="url(#danger-glow)" />
+    <rect x="-10" y="-10" width="360" height="50" rx="16" fill="#311222" />
+    <rect x="-10" y="20" width="360" height="20" fill="#311222" />
+    <line x1="-10" y1="40" x2="350" y2="40" stroke="#f43f5e" stroke-width="1.5" />
+    
+    <!-- Warning Icon -->
+    <path d="M15,12 L30,37 L0,37 Z" fill="#f43f5e" />
+    <circle cx="15" cy="28" r="2" fill="#ffffff" />
+    <rect x="14" y="20" width="2" height="5" rx="1" fill="#ffffff" />
+    
+    <text x="42" y="31" fill="#f43f5e" font-family="sans-serif" font-size="15" font-weight="900" tracking-wide="true">SECURITY ALERT: KEY LEAKED</text>
+    
+    <!-- Alert Details -->
+    <g transform="translate(15, 75)" font-family="sans-serif">
+      <text x="0" y="15" fill="#fca5a5" font-size="13" font-weight="bold">SOURCE: public-github-repo</text>
+      <text x="0" y="40" fill="#ffffff" font-size="14" font-weight="bold">Scanner Bot found exposed secret:</text>
+      
+      <rect x="0" y="55" width="310" height="35" rx="6" fill="#0f0914" stroke="#f43f5e" stroke-width="1" />
+      <text x="12" y="77" fill="#f43f5e" font-family="monospace" font-size="13" font-weight="bold">sk-proj-4A9x92Kz... [OpenWeather]</text>
+      
+      <text x="0" y="120" fill="#94a3b8" font-size="12" font-weight="bold">Risk: Financial Loss / API Abuse / Banning</text>
+      
+      <!-- Red pulsing connection indicator -->
+      <circle cx="10" cy="140" r="6" fill="#ef4444" />
+      <circle cx="10" cy="140" r="12" fill="none" stroke="#ef4444" stroke-width="1.5" opacity="0.5" />
+      <text x="26" y="144" fill="#fca5a5" font-size="12" font-weight="bold">Active leak detected 2 seconds ago</text>
+    </g>
+  </g>
+
+  <!-- Connective laser lines representing data leakage -->
+  <!-- Beams starting from the highlighted API key in the editor and going to the scanner bot and alert box -->
+  <path d="M 450,212 L 800,215" stroke="#ef4444" stroke-width="3" stroke-dasharray="10, 5" opacity="0.8" filter="url(#danger-glow)" />
+  <path d="M 450,212 L 760,320" stroke="#ef4444" stroke-width="2" stroke-dasharray="5, 5" opacity="0.6" />
+</svg>
