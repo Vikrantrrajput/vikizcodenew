@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   keywords: ["Tech 2026", "AI", "Web Development", "Cloud Computing", "Startups"],
   authors: [{ name: "VikizCode Team" }],
   verification: {
-    google: "PASTE_YOUR_GOOGLE_VERIFICATION_CODE_HERE",
+    google: "W628tlITowA6NoyaFKpqlrsCfdZDHbL7f05k3Bc902A",
   },
   openGraph: {
   title: "VikizCode - Tech Trends 2026",
