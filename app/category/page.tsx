@@ -2,6 +2,20 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ArticleCard from "@/components/ArticleCard";
 import { getAllArticles } from "@/lib/data";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Explore Blogs",
+    description:
+        "Browse all VikizCode articles on web development, AI tools, cloud computing, cybersecurity, and career advice for engineering students.",
+    openGraph: {
+        title: "Explore Blogs | VikizCode",
+        description:
+            "Browse all VikizCode articles on web development, AI tools, cloud computing, cybersecurity, and career advice for engineering students.",
+        url: "https://vikizcode.in/category",
+        type: "website",
+    },
+};
 
 export default function CategoryPage() {
     const articles = getAllArticles();

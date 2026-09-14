@@ -5,6 +5,20 @@ import Hero from "@/components/Hero";
 import ArticleSearchFilter from "@/components/ArticleSearchFilter";
 import Footer from "@/components/Footer";
 import { getAllArticles } from "@/lib/data";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "About",
+    description:
+        "VikizCode is a student-driven tech growth platform helping engineering students build real skills in web development, AI tools, and career positioning.",
+    openGraph: {
+        title: "About VikizCode",
+        description:
+            "VikizCode is a student-driven tech growth platform helping engineering students build real skills in web development, AI tools, and career positioning.",
+        url: "https://vikizcode.in/about",
+        type: "website",
+    },
+};
 
 export default function Home() {
   const articles = getAllArticles();
